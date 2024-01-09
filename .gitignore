@@ -1,0 +1,11 @@
+apache-jmeter*/
+docker/
+*.txt
+*.log
+*.iml
+.git/
+.idea/
+*.config
+*.DS_Store
+builds/
+allure-results/

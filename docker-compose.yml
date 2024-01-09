@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+  jmeter:
+    container_name: "jmeter"
+    image: registry.tochka-tech.com/oci_qa-core/jmeter:latest
+    environment:
+    - _ALLURE_REPORT_PATH=${_ALLURE_REPORT_PATH}
+    - _ALLURE_CONFIG_PATH=${_ALLURE_CONFIG_PATH}
+    - JMETER_PATH=${JMETER_PATH}
+#ouath credentials
+    - _oauth_login=${_oauth_login}
+    - _oauth_password=${_oauth_password}
+    volumes:
+      - ./:${JMETER_PATH}
+    command: jmeter -n -t ${JMETER_PATH}/test-plan/${FILE_NAME}.jmx -Jlayer=${LAYER} -Jusers=${USERS_NUMBER} -l /result/allure-results/result.jtl -j /result/jmeter.log -e -o /result/report/ 
